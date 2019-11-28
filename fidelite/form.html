@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulaire</title>
+	<style type="text/css">
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 50%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 100px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+
+</head>
+<body>
+	
+<div>
+	<center>
+		<label>Donner votre ID_Client:</label>
+    <form method="POST" action="ajouterfidel.php">  
+    <input type="hidden" id="FID" name="FID">
+    <input type="hidden" id="score" name="score">
+    <input type="text" id="idc" name="idc" placeholder="Identifiant">
+    <input type="hidden" id="promotion" name="promotion" value = "0" >
+    <input type="submit" name="Submit1" value="ajouter" >
+    </center>
+  </form>
+  
+</div>
+
+
+
+
+</body>
+</html>
