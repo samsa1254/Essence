@@ -1,12 +1,9 @@
-<?PHP
-include "core/userC.php";
-session_start();
-$usuC=new utilisateurCore();
-if (isset($_SESSION['l']))
-{
-  echo "string";
-	$usuC->supprimerClient($_SESSION['l']);
-	header('Location: index.php'); //redirection
-}
+<?php
+include "../core/produitsC.php";
 
+$id=$_POST["id"];
+
+$prod2C = new produitsC();
+$prod2C->suppprod($id);
+header("location:AfficherProduit.php");
 ?>
