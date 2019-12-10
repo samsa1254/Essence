@@ -1,4 +1,4 @@
-<?php include"header3.php" ?>
+<?php include"header1.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,64 +36,11 @@
 
                         <form action="modifieruser.php" method="post">
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="pseudo"> modifier pseudo<span>*</span></label>
-                                    <input type="text"  name="pseudo1" value="" >
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="first_name">modifier Nom<span>*</span></label>
-                                    <input type="text"  name="nom1" value="" >
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="last_name">modifier Prenom<span>*</span></label>
-                                    <input type="text"  name="prenom1" value="" >
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="mot-depasse">modifier mot de passe1<span>*</span></label>
-                                    <input type="password"  name="mdp1" value="" >
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="mot-depasseconf"> confirmation mot de passe<span>*</span></label>
-                                    <input type="password"  name="pass2" value="" required>
-                                </div>
-                                      <div class="col-12 mb-3">
-                                    <label for="ville">Ville <span>*</span></label>
-                                    <select class="w-100" name="ville1">
-                                        <option value="usa">Bizerte</option>
-                                        <option value="uk">Grand Tunis</option>
-                                        <option value="ger">Beja</option>
-                                        <option value="fra">Jendouba</option>
-                                        <option value="ind">Nabeul</option>
-                                        <option value="aus">Zaghouan</option>
-                                        <option value="bra">Siliana</option>
-                                        <option value="cana">le Kef</option>
-                                        <option value="usa">Kairouan</option>
-                                        <option value="uk">Mahdia</option>
-                                        <option value="ger">Gabes</option>
-                                        <option value="fra">Tozeur</option>
-                                        <option value="ind">Medenine</option>
-                                        <option value="aus">Jerba</option>
-                                        <option value="bra">Tataouine</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="postcode">Code postal <span>*</span></label>
-                                    <input type="text"  name="zip1" value="">
-                               </div>
+
                                <div class="col-md-6 mb-3">
                                    <label for="adresse">adresse<span>*</span></label>
                                    <input type="text"  name="adresse1" value="" >
                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="phone_number">telephone <span>*</span></label>
-                                    <input type="number"  name="tel1" min="0" value="">
-                                </div>
-                                <div class="col-12 mb-4">
-                                    <label for="email_address">Adresse email<span>*</span></label>
-                                    <input type="email"  name="mail1" value="">
-                                </div>
-
-
                                     <div class="custom-control custom-checkbox d-block mb-2">
                                       <input type="submit" name="signup-bt" value="modifier" class="ajouter" >
                                     </div>
