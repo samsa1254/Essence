@@ -1,3 +1,38 @@
+<?PHP
+include "../core/carteC.php";
+include "../entities/carte.php";
+$client1C=new carteC();
+$listeClients=$client1C->afficherCartes();
+
+//var_dump($listeEmployes->fetchAll());
+?>
+
+<?php
+
+if(isset($_POST['search']))
+{
+    $valueToSearch = $_POST['valueToSearch'];
+    // search in all table columns
+    // using concat mysql function
+    $query = "SELECT * FROM carte WHERE CONCAT(id, username, nom, prenom) LIKE '%".$valueToSearch."%'";
+    $search_result = filterTable($query);
+    
+}
+ else {
+    $query = "SELECT * FROM carte";
+    $search_result = filterTable($query);
+}
+
+// function to connect and execute the query
+function filterTable($query)
+{
+    $connect = mysqli_connect("localhost", "root", "", "soujoud");
+    $filter_Result = mysqli_query($connect, $query);
+    return $filter_Result;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +54,6 @@
   <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
-        <link href="../assets/css/notification.css" rel="stylesheet" />
 
 </head>
 
@@ -120,7 +154,7 @@
       </li>
     </ul>
   </li>
-         
+        
  <li><a  href="#">Service après vente</a>
     <ul>
       <li><a href="../SAV/validerSAV.html">Valider une réclamation </a></li>
@@ -242,60 +276,61 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier une facture</h5>
-                 <?PHP
-                include "../entities/commande.php";
-                include "../core/commandeC.php";
-                if (isset($_GET['idc'])){
-                  $commandeC=new commandeC();
-                  $result=$commandeC->getid($_GET['idc']);
-                  foreach($result as $row){
-                  $idc=$row['idc'];
-                  $nomc=$row['nomc'];
-                  $valeur=$row['valeur'];
-                  $dateE=$row['dateE'];
-                  ?>
-                    <form class="form-horizontal" method="POST" id="form" >
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label"  >ID commande </label>
-                        <div class="col-md-9">
-                        <input type="text" class="form-control" readonly onblur="verifref(this);" id="idc" name="idc" value="<?PHP echo $idc ?>">
-                        </div>
+                <h5 class="title">Afficher une facture</h5>
+              </div>
+              <div class="card-body">
+                <form name="f">
+                 <div class="row">
+                    <div class="col-md-6 pr-md-1">
+                      <h4>Tableau des cartes</h4>
                       </div>
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Nom du commande </label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" onblur="verifnom(this);" name="nomc" id="nomc" value="<?PHP echo $nomc?>"  >
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="example-email">Pourcentage</label>
-                        <div class="col-md-9">
-                          <select class="form-control" name="valeur" id="valeur" value="<?PHP echo $valeur?>">
-                            <option>0.05</option>
-                            <option>0.10</option>
-                            <option>0.15</option>
+                        <div class="card-body">
+                         <div id="table" class="table-responsive table-editable">
+                           <table class="table table-bordered table-responsive-md table-striped text-center mb-0 text-nowrap">
+                             <thead>
+                             <tr>
+                             <th class="text-center">Id</th>
+                             <th class="text-center">Username</th>
+                             <th class="text-center">nom</th>
+                             <th class="text-center">prenom</th>
+                             <th class="text-center">cin </th>
+                             <tr>
+                             </thead>
 
-                          </select>
+                              <tbody>
+                              <?PHP    
+                               while($row = mysqli_fetch_array($search_result)):
+                              ?>
+                              <tr>
+                              <td><?PHP echo $row['id']; ?></td>
+                              <td><?PHP echo $row['username']; ?></td>
+                              <td><?PHP echo $row['nom']; ?></td>
+                              <td><?PHP echo $row['prenom']; ?></td>
+                              <td><?PHP echo $row['cin']; ?></td>
+                              </tr>
+                              <?php endwhile; 
+                              ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                    
+                    <form method="POST" action="tablecarte.php">
+                      <div class="card-body">
+                        <div class="input-group">
+                           <input class="form-control btl-2 bbl-2" type="text" name="valueToSearch" placeholder="Value To Search">
+                             <div class="input-group-append">
+                           <input type="submit" name="search" value="Rechercher" class="btn btn-primary btr-2 bbr-2">
+                             <br><br>
+                             </div>
                         </div>
                       </div>
-              </div>
+                  <div class="row"></div>
+                  <div class="row"></div>
+                </form>
+         
               <div class="card-footer">
-                <button type="submit" class="btn btn-fill btn-primary" onclick="show()">Modifier</button>
-                <input class="form-control" type="date" id="date" name="dateE" value="<?PHP echo $dateE ?>">
-                </div>
-              </div>
-                  <button type="submit" class="btn btn-primary mt-1 mb-0"  value="modifier" name="modifier">Modifier</button>
-                  <input type="hidden" name="idcc" value="<?PHP echo $_GET['idc'];?>">
-               </form>
-                    <?PHP } }
-                      if (isset($_POST['modifier'])){
-                          $commande=new commande( $_POST['nomc'],$_POST['valeur'],$_POST['dateE'] );
-                          $commandeC->modifiercommande($commande,$_POST['idcc']);
-                          echo "<META http-equiv='refresh' content='0;URL=panierBE.php'>";
-                          }
-                    ?>
-                <div id="toast"></div>
+                <button type="submit" class="btn btn-fill btn-primary" onclick="valide()">	Afficher </button>
               </div>
             </div>
           </div>
@@ -388,7 +423,7 @@
   <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
-    <script type="text/javascript" src="../assets/js/Panier/facture.js"></script>
+  <script type="text/javascript" src="../assets/js/connexion.js"></script>
 <script type="text/javascript" src="../assets/js/JQuery.js"></script>
   <script>
     $(document).ready(function() {
