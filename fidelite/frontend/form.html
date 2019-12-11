@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulaire</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+	<style type="text/css">
+
+.button {
+  border-radius: 8px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 400px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.BD
+{
+border-radius: 1px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 5px;
+  padding: 5px;
+  width: 80px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 4px;
+
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+color: #323731;
+font-family: monospace;
+font-size: 25px;
+text-align: left;
+}
+h3
+{
+  color: black;
+font-family: monospace;
+font-size: 25px;
+}
+h2
+{
+background-color: #323731;
+color: #323731; 
+}
+th 
+{
+background-color: #323731;
+color: white;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 50%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  padding: 50px;
+}
+</style>
+
+</head>
+<body>
+<div>
+	<center>
+		<h3>Donner votre Identifiant :</h3>
+    <form method="POST" action="ajouterfidel.php">  
+    <input type="hidden" id="FID" name="FID">
+    <input type="hidden" id="score" name="score">
+    <table>
+   <tr><td><input type="text" id="idc" name="idc" placeholder="Identifiant"></td>
+    <input type="hidden" id="promotion" name="promotion" value = "0" >
+    <td><input type="submit" name="Submit1" value="ajouter" ></td
+      ></tr>
+    </table>
+    </center>
+  </form>
+</div>
+</style>
+</head>
+</body>
+</html>
